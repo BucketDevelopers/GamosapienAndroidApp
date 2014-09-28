@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GamOsapien</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="Supported">Unsupported</string>
+    <string name="phone_compatibility">Phone Compatibility Check</string>
+    <string name="checkmark">\u2713</string>
+    <string name="crossmark">X</string>
+    <string name="required_sensors">Required Sensors</string>
+    <string name="magnetometer">Magnetometer</string>
+    <string name="accelerometer">Accelerometer</string>
+    <string name="IP_details_label">"Enter IP details of your PC "</string>
+ 	<string name="chk1"></string>
+    <string name="chk2"></string>
+    <string name="chk3"></string>
+    <string name="chk4"></string>
+    <string name="chk5"></string>
+    <string name="chk6"></string>
+    <string name="chk7"></string>
+    <string name="chk8"></string>
+    <string name="chk9"></string>
+    <string name="chk10"></string>
+    
+</resources>
