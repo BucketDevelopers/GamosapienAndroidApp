@@ -2,21 +2,18 @@
     android:id="@+id/tableLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#000000"
-    android:weightSum="3" >
-
-    <!-- 2 columns -->
+    android:background="#000000" >
 
     <TableRow
         android:id="@+id/tableRow1"
-        android:layout_width="40dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1" >
+        android:layout_weight="0.33" >
 
         <Button
             android:id="@+id/b1"
             android:layout_width="wrap_content"
-            android:layout_height="150dp"
+            android:layout_height="fill_parent"
             android:layout_weight="0.3"
             android:background="@drawable/color"
             android:text="@string/chk1"
@@ -25,7 +22,7 @@
         <Button
             android:id="@+id/b2"
             android:layout_width="wrap_content"
-            android:layout_height="150dp"
+            android:layout_height="fill_parent"
             android:layout_weight="0.3"
             android:background="@drawable/color"
             android:text="@string/chk2"
@@ -33,24 +30,22 @@
 
         <Button
             android:id="@+id/b3"
-            android:layout_height="150dp"
+            android:layout_height="fill_parent"
             android:layout_weight="0.3"
             android:background="@drawable/color"
             android:text="@string/chk3"
             android:textColor="#ffffff" />
     </TableRow>
 
-    <!-- edittext span 2 column -->
-
     <TableRow
         android:id="@+id/a4"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1" >
+        android:layout_weight="0.33" >
 
         <Button
             android:id="@+id/b4"
-            android:layout_height="150dp"
+            android:layout_height="fill_parent"
             android:layout_weight="0.3"
             android:background="@drawable/color"
             android:text="@string/chk3"
@@ -58,7 +53,7 @@
 
         <Button
             android:id="@+id/b5"
-            android:layout_height="150dp"
+            android:layout_height="fill_parent"
             android:layout_weight="0.3"
             android:background="@drawable/color"
             android:text="@string/chk4"
@@ -66,28 +61,22 @@
 
         <Button
             android:id="@+id/b6"
-            android:layout_height="150dp"
+            android:layout_height="fill_parent"
             android:layout_weight="0.3"
             android:background="@drawable/color"
             android:text="@string/chk5"
             android:textColor="#ffffff" />
     </TableRow>
 
-    <!-- just draw a red line -->
-
-
-    <!-- 3 columns -->
-
     <TableRow
         android:id="@+id/a8"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:padding="5dip" >
+        android:layout_weight="0.33" >
 
         <Button
             android:id="@+id/b7"
-            android:layout_height="150dp"
+            android:layout_height="fill_parent"
             android:layout_weight="0.3"
             android:background="@drawable/color"
             android:text="@string/chk3"
@@ -95,7 +84,7 @@
 
         <Button
             android:id="@+id/b8"
-            android:layout_height="150dp"
+            android:layout_height="fill_parent"
             android:layout_weight="0.3"
             android:background="@drawable/color"
             android:text="@string/chk4"
@@ -103,7 +92,7 @@
 
         <Button
             android:id="@+id/b9"
-            android:layout_height="150dp"
+            android:layout_height="fill_parent"
             android:layout_weight="0.3"
             android:background="@drawable/color"
             android:text="@string/chk5"
