@@ -31,7 +31,7 @@ public class MainActivity extends ActionBarActivity {
 	private EditText ipPortET;
 	protected boolean iptextispresent;
 	protected boolean porttextispresent;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -196,6 +196,12 @@ public class MainActivity extends ActionBarActivity {
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			return true;
+		}else if(id == R.id.About){
+			Intent i = new Intent(getApplicationContext(), About.class);
+			startActivity(i);
+		}else if(id == R.id.editKeys){
+			Intent i = new Intent(getApplicationContext(), EditKeysScreen.class);
+			startActivity(i);
 		}
 		return super.onOptionsItemSelected(item);
 	}

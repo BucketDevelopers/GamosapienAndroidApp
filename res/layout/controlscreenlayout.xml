@@ -1,5 +1,5 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tableLayout1"
+    android:id="@+id/keyPadTableLayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#000000" >
@@ -17,7 +17,8 @@
             android:layout_weight="0.3"
             android:background="@drawable/color"
             android:text="@string/chk1"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/b2"
@@ -26,7 +27,8 @@
             android:layout_weight="0.3"
             android:background="@drawable/color"
             android:text="@string/chk2"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/b3"
@@ -34,7 +36,8 @@
             android:layout_weight="0.3"
             android:background="@drawable/color"
             android:text="@string/chk3"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:textSize="30sp" />
     </TableRow>
 
     <TableRow
@@ -48,24 +51,27 @@
             android:layout_height="fill_parent"
             android:layout_weight="0.3"
             android:background="@drawable/color"
-            android:text="@string/chk3"
-            android:textColor="#ffffff" />
+            android:text="@string/chk4"
+            android:textColor="#ffffff"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/b5"
             android:layout_height="fill_parent"
             android:layout_weight="0.3"
             android:background="@drawable/color"
-            android:text="@string/chk4"
-            android:textColor="#ffffff" />
+            android:text="@string/chk5"
+            android:textColor="#ffffff"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/b6"
             android:layout_height="fill_parent"
             android:layout_weight="0.3"
             android:background="@drawable/color"
-            android:text="@string/chk5"
-            android:textColor="#ffffff" />
+            android:text="@string/chk6"
+            android:textColor="#ffffff"
+            android:textSize="30sp" />
     </TableRow>
 
     <TableRow
@@ -79,24 +85,27 @@
             android:layout_height="fill_parent"
             android:layout_weight="0.3"
             android:background="@drawable/color"
-            android:text="@string/chk3"
-            android:textColor="#ffffff" />
+            android:text="@string/chk7"
+            android:textColor="#ffffff"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/b8"
             android:layout_height="fill_parent"
             android:layout_weight="0.3"
             android:background="@drawable/color"
-            android:text="@string/chk4"
-            android:textColor="#ffffff" />
+            android:text="@string/chk8"
+            android:textColor="#ffffff"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/b9"
             android:layout_height="fill_parent"
             android:layout_weight="0.3"
             android:background="@drawable/color"
-            android:text="@string/chk5"
-            android:textColor="#ffffff" />
+            android:text="@string/chk9"
+            android:textColor="#ffffff"
+            android:textSize="30sp" />
     </TableRow>
 
 </TableLayout>

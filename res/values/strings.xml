@@ -22,5 +22,7 @@
     <string name="chk8"></string>
     <string name="chk9"></string>
     <string name="chk10"></string>
+    <string name="edit_keys">Edit Keys</string>
+    <string name="about">About</string>
     
 </resources>

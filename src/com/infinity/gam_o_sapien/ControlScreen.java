@@ -5,12 +5,14 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,10 +20,10 @@ import android.view.View.OnTouchListener;
 import android.view.WindowManager;
 import android.widget.Button;
 
-public class ControlScreen extends Activity implements SensorEventListener {
+public class ControlScreen extends ActionBarActivity implements SensorEventListener {
 
+	private SensorManager mSensorManager;
 	float Rot[] = null; // for gravity rotational data
-	// don't use R because android uses that for other stuff
 	float I[] = null; // for magnetic rotational data
 	float accels[] = new float[3];
 	float mags[] = new float[3];
@@ -32,7 +34,7 @@ public class ControlScreen extends Activity implements SensorEventListener {
 
 	/*************************/
 	private static DatagramSocket clientSocket;
-	private int keyValues[]=new int[11]; // Supports 11 Keys
+	private int keycurrStates[] = new int[11]; // Supports 11 HW Keys
 	private static String ipAdr;
 	private static int IpPort = 9001;
 	private int yawCorrection = 0;
@@ -40,8 +42,8 @@ public class ControlScreen extends Activity implements SensorEventListener {
 	private int yawBase;
 	protected boolean YawSample;
 	private Button b1, b2, b3, b4, b5, b6, b7, b8, b9;
-
-	private SensorManager mSensorManager;
+	private KeysStorage kStorageengine;
+	private char[] savedKeys;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,9 @@ public class ControlScreen extends Activity implements SensorEventListener {
 		// get sensorManager and initialise sensor listeners
 		mSensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
 		initListeners();
+		kStorageengine = new KeysStorage(getApplicationContext());
+		kStorageengine.initSaveKeys();
+		savedKeys = kStorageengine.readallKeys();
 
 		b1 = (Button) findViewById(R.id.b1);
 		b2 = (Button) findViewById(R.id.b2);
@@ -61,8 +66,10 @@ public class ControlScreen extends Activity implements SensorEventListener {
 		b7 = (Button) findViewById(R.id.b7);
 		b8 = (Button) findViewById(R.id.b8);
 		b9 = (Button) findViewById(R.id.b9);
+
+		updateKeyPadUI();
+
 		yawBase = 0;
-		// key_string = "0";
 
 		try {
 			clientSocket = new DatagramSocket();
@@ -70,84 +77,83 @@ public class ControlScreen extends Activity implements SensorEventListener {
 			e1.printStackTrace();
 		}
 		OnTouchListener oclBtn = new OnTouchListener() {
+			@SuppressLint("ClickableViewAccessibility")
 			public boolean onTouch(View v, MotionEvent event) {
 
 				switch (v.getId()) {
 				case R.id.b1:
 					if (event.getAction() == MotionEvent.ACTION_DOWN) {
-						keyValues[0] = 1;
+						keycurrStates[0] = 1;
 					} else if (event.getAction() == MotionEvent.ACTION_UP) {
-						keyValues[0] = 2;
+						keycurrStates[0] = 2;
 					}
 
 					break;
 				case R.id.b2:
 					if (event.getAction() == MotionEvent.ACTION_DOWN) {
-						keyValues[1] = 1;
+						keycurrStates[1] = 1;
 					} else if (event.getAction() == MotionEvent.ACTION_UP) {
-						keyValues[1] = 2;
+						keycurrStates[1] = 2;
 					}
 
 					break;
 				case R.id.b3:
 					if (event.getAction() == MotionEvent.ACTION_DOWN) {
-						keyValues[2] = 1;
+						keycurrStates[2] = 1;
 					} else if (event.getAction() == MotionEvent.ACTION_UP) {
-						keyValues[2] = 2;
+						keycurrStates[2] = 2;
 					}
 					break;
 				case R.id.b4:
 					if (event.getAction() == MotionEvent.ACTION_DOWN) {
-						keyValues[3] = 1;
+						keycurrStates[3] = 1;
 					} else if (event.getAction() == MotionEvent.ACTION_UP) {
-						keyValues[3] = 2;
+						keycurrStates[3] = 2;
 					}
 
 					break;
 
 				case R.id.b5:
 					if (event.getAction() == MotionEvent.ACTION_DOWN) {
-						keyValues[4] = 1;
-						
+						keycurrStates[4] = 1;
+
 					} else if (event.getAction() == MotionEvent.ACTION_UP) {
-						keyValues[4] = 2;
+						keycurrStates[4] = 2;
 					}
 					yawBase = lastYaw;
 					break;
 
 				case R.id.b6:
 					if (event.getAction() == MotionEvent.ACTION_DOWN) {
-						keyValues[5] = 1;
+						keycurrStates[5] = 1;
 					} else if (event.getAction() == MotionEvent.ACTION_UP) {
-						keyValues[5] = 2;
+						keycurrStates[5] = 2;
 					}
 
 					break;
 				case R.id.b7:
 					if (event.getAction() == MotionEvent.ACTION_DOWN) {
-						keyValues[6] = 1;
+						keycurrStates[6] = 1;
 					} else if (event.getAction() == MotionEvent.ACTION_UP) {
-						keyValues[6] = 2;
+						keycurrStates[6] = 2;
 					}
 
 					break;
 				case R.id.b8:
 					if (event.getAction() == MotionEvent.ACTION_DOWN) {
-						keyValues[7] = 1;
+						keycurrStates[7] = 1;
 					} else if (event.getAction() == MotionEvent.ACTION_UP) {
-						keyValues[7] = 2;
+						keycurrStates[7] = 2;
 					}
 
 					break;
 				case R.id.b9:
 					if (event.getAction() == MotionEvent.ACTION_DOWN) {
-						keyValues[8] = 1;
+						keycurrStates[8] = 1;
 					} else if (event.getAction() == MotionEvent.ACTION_UP) {
-						keyValues[8] = 2;
+						keycurrStates[8] = 2;
 					}
-
 					break;
-
 				}
 				return false;
 			}
@@ -161,13 +167,13 @@ public class ControlScreen extends Activity implements SensorEventListener {
 		b8.setOnTouchListener(oclBtn);
 		b9.setOnTouchListener(oclBtn);
 		b5.setOnTouchListener(oclBtn);
-//		b5.setOnClickListener(new OnClickListener() {
-//
-//			public void onClick(View arg0) {
-//				// YawSample = true;
-//				yawBase = lastYaw;
-//			}
-//		});
+		// b5.setOnClickListener(new OnClickListener() {
+		//
+		// public void onClick(View arg0) {
+		// // YawSample = true;
+		// yawBase = lastYaw;
+		// }
+		// });
 
 		// To keep App Screen ON
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -178,11 +184,11 @@ public class ControlScreen extends Activity implements SensorEventListener {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
-			keyValues[10] = 1;
+			keycurrStates[10] = 1;
 			return true;
 		}
 		if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
-			keyValues[9] = 1;
+			keycurrStates[9] = 1;
 			return true;
 		}
 
@@ -192,11 +198,11 @@ public class ControlScreen extends Activity implements SensorEventListener {
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
-			keyValues[10] = 2;
+			keycurrStates[10] = 2;
 			return true;
 		}
 		if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
-			keyValues[9] = 2;
+			keycurrStates[9] = 2;
 			return true;
 		}
 		return super.onKeyUp(keyCode, event);
@@ -242,9 +248,9 @@ public class ControlScreen extends Activity implements SensorEventListener {
 
 	public void onSensorChanged(SensorEvent event) {
 
-		// below commented code - junk - unreliable is never populated
 		// if sensor is unreliable, return void
 		if (event.accuracy == SensorManager.SENSOR_STATUS_UNRELIABLE) {
+			Log.d("INF", "Sensor Data Unreliable");
 			return;
 		}
 
@@ -293,19 +299,19 @@ public class ControlScreen extends Activity implements SensorEventListener {
 			StringBuilder sendData = new StringBuilder("DEVICE," + rollText
 					+ "," + pitchText + "," + yawText);
 
-				sendData.append("," + getKeyNameandState(0,keyValues));
-				sendData.append("," + getKeyNameandState(1,keyValues));
-				sendData.append("," + getKeyNameandState(2,keyValues));
-				sendData.append("," + getKeyNameandState(3,keyValues));
-				sendData.append("," + getKeyNameandState(4,keyValues));
-				sendData.append("," + getKeyNameandState(5,keyValues));
-				sendData.append("," + getKeyNameandState(6,keyValues));
-				sendData.append("," + getKeyNameandState(7,keyValues));
-				sendData.append("," + getKeyNameandState(8,keyValues));
-				sendData.append("," + getKeyNameandState(9,keyValues));
-				sendData.append("," + getKeyNameandState(10,keyValues));
+			sendData.append("," + getKeyNameandState(0, keycurrStates));
+			sendData.append("," + getKeyNameandState(1, keycurrStates));
+			sendData.append("," + getKeyNameandState(2, keycurrStates));
+			sendData.append("," + getKeyNameandState(3, keycurrStates));
+			sendData.append("," + getKeyNameandState(4, keycurrStates));
+			sendData.append("," + getKeyNameandState(5, keycurrStates));
+			sendData.append("," + getKeyNameandState(6, keycurrStates));
+			sendData.append("," + getKeyNameandState(7, keycurrStates));
+			sendData.append("," + getKeyNameandState(8, keycurrStates));
+			sendData.append("," + getKeyNameandState(9, keycurrStates));
+			sendData.append("," + getKeyNameandState(10, keycurrStates));
 
-				sendSensors(sendData.toString());
+			sendSensors(sendData.toString());
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -313,31 +319,67 @@ public class ControlScreen extends Activity implements SensorEventListener {
 
 	}
 
-	private String getKeyNameandState(int keyno,int keyVal[]) {
-		
+	private void updateKeyPadUI() {
+		b1.setText(savedKeys[0] + "");
+		b2.setText(savedKeys[1] + "");
+		b3.setText(savedKeys[2] + "");
+		b4.setText(savedKeys[3] + "");
+		b5.setText("CLBRTE");
+		b5.setTextSize(12f);
+		// b5.setText(savedKeys[4]+"");
+		b6.setText(savedKeys[5] + "");
+		b7.setText(savedKeys[6] + "");
+		b8.setText(savedKeys[7] + "");
+		b9.setText(savedKeys[8] + "");
+
+	}
+
+	private String getKeyNameandState(int keyno, int keyVal[]) {
+
 		char key;
-		
-		
-		switch(keyno)
-		{
-			case 0:key='Q';break;
-			case 1:key='W';break;
-			case 2:key='R';break;
-			case 3:key='A';break;
-			case 4:key='0';break;
-			case 5:key='D';break;
-			case 6:key='0';break;
-			case 7:key='S';break;
-			case 8:key=' ';break;
-			case 9:key='$';break;
-			case 10:key='*';break;
-			default:key='0';break;	
-		
+
+		switch (keyno) {
+		case 0:
+			key = savedKeys[0];
+			break;
+		case 1:
+			key = savedKeys[1];
+			break;
+		case 2:
+			key = savedKeys[2];
+			break;
+		case 3:
+			key = savedKeys[3];
+			break;
+		case 4:
+			key = savedKeys[4];
+			break;
+		case 5:
+			key = savedKeys[5];
+			break;
+		case 6:
+			key = savedKeys[6];
+			break;
+		case 7:
+			key = savedKeys[7];
+			break;
+		case 8:
+			key = savedKeys[8];
+			break;
+		case 9:
+			key = '$';
+			break;
+		case 10:
+			key = '*';
+			break;
+		default:
+			key = '0';
+			break;
+
 		}
-		String ret=key+""+keyVal[keyno];
-		if(keyVal[keyno]==2)
-		{
-			keyVal[keyno]=0;
+		String ret = key + "" + keyVal[keyno];
+		if (keyVal[keyno] == 2) {
+			keyVal[keyno] = 0;
 		}
 		return ret;
 	}
@@ -372,4 +414,6 @@ public class ControlScreen extends Activity implements SensorEventListener {
 		return (CorrectedValue);
 	}
 
+	
+	
 }

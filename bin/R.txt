@@ -236,6 +236,7 @@ int drawable abc_textfield_searchview_right_holo_dark 0x7f020055
 int drawable abc_textfield_searchview_right_holo_light 0x7f020056
 int drawable color 0x7f020057
 int drawable ic_launcher 0x7f020058
+int id About 0x7f050053
 int id IPaddress 0x7f05003f
 int id Port 0x7f050040
 int id Supported 0x7f05003c
@@ -272,6 +273,7 @@ int id default_activity_button 0x7f050028
 int id dialog 0x7f05000e
 int id disableHome 0x7f050008
 int id dropdown 0x7f05000f
+int id editKeys 0x7f050052
 int id edit_query 0x7f050030
 int id end 0x7f050013
 int id expand_activities_button 0x7f050026
@@ -283,6 +285,7 @@ int id homeAsUp 0x7f050005
 int id icon 0x7f05002a
 int id ifRoom 0x7f05000a
 int id image 0x7f050027
+int id keyPadTableLayout 0x7f050044
 int id listMode 0x7f050001
 int id list_item 0x7f050029
 int id magsupport 0x7f050043
@@ -311,7 +314,6 @@ int id showTitle 0x7f050006
 int id split_action_bar 0x7f05001e
 int id submit_area 0x7f050039
 int id tabMode 0x7f050002
-int id tableLayout1 0x7f050044
 int id tableRow1 0x7f050045
 int id title 0x7f05002b
 int id top_action_bar 0x7f050020
@@ -343,9 +345,10 @@ int layout abc_popup_menu_item_layout 0x7f030014
 int layout abc_search_dropdown_item_icons_2line 0x7f030015
 int layout abc_search_view 0x7f030016
 int layout abc_simple_decor 0x7f030017
-int layout activity_main 0x7f030018
-int layout controlscreenlayout 0x7f030019
-int layout support_simple_spinner_dropdown_item 0x7f03001a
+int layout about 0x7f030018
+int layout activity_main 0x7f030019
+int layout controlscreenlayout 0x7f03001a
+int layout support_simple_spinner_dropdown_item 0x7f03001b
 int menu main 0x7f0c0000
 int string IP_details_label 0x7f0a0017
 int string Supported 0x7f0a0010
@@ -362,6 +365,7 @@ int string abc_searchview_description_submit 0x7f0a0007
 int string abc_searchview_description_voice 0x7f0a0008
 int string abc_shareactionprovider_share_with 0x7f0a000c
 int string abc_shareactionprovider_share_with_application 0x7f0a000b
+int string about 0x7f0a0023
 int string accelerometer 0x7f0a0016
 int string action_settings 0x7f0a000f
 int string app_name 0x7f0a000d
@@ -377,6 +381,7 @@ int string chk7 0x7f0a001e
 int string chk8 0x7f0a001f
 int string chk9 0x7f0a0020
 int string crossmark 0x7f0a0013
+int string edit_keys 0x7f0a0022
 int string hello_world 0x7f0a000e
 int string magnetometer 0x7f0a0015
 int string phone_compatibility 0x7f0a0011
