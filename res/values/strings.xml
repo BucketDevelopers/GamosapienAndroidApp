@@ -24,5 +24,8 @@
     <string name="chk10"></string>
     <string name="edit_keys">Edit Keys</string>
     <string name="about">About</string>
+    <string name="team_infinity">Team Infinity</string>
+    <string name="Gamosapien_Description">&quot;Gamosapiens  transforms your android phone into a full fledged gesture based Joystick. The app uses the phone's sensors along with the hardware buttons .  It can be used to play any game including Counter Strike , Need for speed &quot;</string>
+    <string name="team_members_details">Atul R - atulanand94@gmail.com \nRaveendra Soori - sooriravindra@gmail.com \nAparna HS - hs.aparna.blr@gmail.com \nBhavya Karki - bhavya.v.karki@gmail.com \nNiveditha Shenoy - shenoy.niveditha@yahoo.in</string>
     
 </resources>
