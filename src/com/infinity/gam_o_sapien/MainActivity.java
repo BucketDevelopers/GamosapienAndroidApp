@@ -1,6 +1,7 @@
 package com.infinity.gam_o_sapien;
 
 import java.util.List;
+
 import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;

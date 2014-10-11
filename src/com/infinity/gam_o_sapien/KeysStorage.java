@@ -74,7 +74,7 @@ public class KeysStorage {
 		defkeys[5] = 'd';
 		defkeys[6] = 'c';
 		defkeys[7] = 's';
-		defkeys[8] = ' ';
+		defkeys[8] = '_';
 		saveallKeys(defkeys);
 	}
 

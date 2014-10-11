@@ -276,10 +276,10 @@ int id dialogButtonCancel 0x7f050057
 int id dialogButtonOK 0x7f050056
 int id disableHome 0x7f050008
 int id dropdown 0x7f05000f
+int id droplistofkeys 0x7f050055
 int id editKeys 0x7f050059
 int id edit_query 0x7f050030
 int id end 0x7f050013
-int id enteredKey 0x7f050055
 int id expand_activities_button 0x7f050026
 int id expanded_menu 0x7f05002c
 int id forSupported 0x7f050040
@@ -355,8 +355,9 @@ int layout abc_simple_decor 0x7f030017
 int layout about 0x7f030018
 int layout activity_main 0x7f030019
 int layout controlscreenlayout 0x7f03001a
-int layout custom 0x7f03001b
-int layout support_simple_spinner_dropdown_item 0x7f03001c
+int layout customdialog 0x7f03001b
+int layout customspinner 0x7f03001c
+int layout support_simple_spinner_dropdown_item 0x7f03001d
 int menu main 0x7f0c0000
 int string Gamosapien_Description 0x7f0a0025
 int string IP_details_label 0x7f0a0017
@@ -378,6 +379,7 @@ int string about 0x7f0a0023
 int string accelerometer 0x7f0a0016
 int string action_settings 0x7f0a000f
 int string app_name 0x7f0a000d
+int string cancel 0x7f0a0027
 int string checkmark 0x7f0a0012
 int string chk1 0x7f0a0018
 int string chk10 0x7f0a0021

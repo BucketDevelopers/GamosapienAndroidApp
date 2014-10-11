@@ -20,7 +20,8 @@ import android.view.View.OnTouchListener;
 import android.view.WindowManager;
 import android.widget.Button;
 
-public class ControlScreen extends ActionBarActivity implements SensorEventListener {
+public class ControlScreen extends ActionBarActivity implements
+		SensorEventListener {
 
 	private SensorManager mSensorManager;
 	float Rot[] = null; // for gravity rotational data
@@ -49,6 +50,10 @@ public class ControlScreen extends ActionBarActivity implements SensorEventListe
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.controlscreenlayout);
+		//To make it full screen
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		getSupportActionBar().hide();
 
 		// get sensorManager and initialise sensor listeners
 		mSensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
@@ -320,18 +325,55 @@ public class ControlScreen extends ActionBarActivity implements SensorEventListe
 	}
 
 	private void updateKeyPadUI() {
-		b1.setText(savedKeys[0] + "");
-		b2.setText(savedKeys[1] + "");
-		b3.setText(savedKeys[2] + "");
-		b4.setText(savedKeys[3] + "");
+		Log.d("INF", "UPDATING KEYPAD");
+		b1.setText(getProperText(savedKeys[0]));
+		b2.setText(getProperText(savedKeys[1]));
+		b3.setText(getProperText(savedKeys[2]));
+		b4.setText(getProperText(savedKeys[3]));
 		b5.setText("CLBRTE");
 		b5.setTextSize(12f);
 		// b5.setText(savedKeys[4]+"");
-		b6.setText(savedKeys[5] + "");
-		b7.setText(savedKeys[6] + "");
-		b8.setText(savedKeys[7] + "");
-		b9.setText(savedKeys[8] + "");
+		b6.setText(getProperText(savedKeys[5]));
+		b7.setText(getProperText(savedKeys[6]));
+		b8.setText(getProperText(savedKeys[7]));
+		b9.setText(getProperText(savedKeys[8]));
 
+	}
+
+	private String getProperText(char keyCharacter) {
+		// !->LEFT,@->RIGHT,_->SPACE,*->MOUSERIGHT,$->MOUSELEFT,
+		// %->UP,^->DOWN,&->CTRL,(->SHIFT,)->ALT,
+		String ret;
+		Log.d("INF", "KEYCHAR : " + keyCharacter);
+		switch (keyCharacter) {
+		case '!':
+			ret = "LEFT";
+			break;
+		case '@':
+			ret = "RIGHT";
+			break;
+		case '_':
+			ret = "SPACE";
+			break;
+		case '%':
+			ret = "UP";
+			break;
+		case '^':
+			ret = "DOWN";
+			break;
+		case '&':
+			ret = "CTRL";
+			break;
+		case '(':
+			ret = "SHIFT";
+			break;
+		case ')':
+			ret = "ALT";
+			break;
+		default:
+			ret = keyCharacter + "";
+		}
+		return ret;
 	}
 
 	private String getKeyNameandState(int keyno, int keyVal[]) {
@@ -414,6 +456,4 @@ public class ControlScreen extends ActionBarActivity implements SensorEventListe
 		return (CorrectedValue);
 	}
 
-	
-	
 }

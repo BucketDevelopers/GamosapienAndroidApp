@@ -19,8 +19,8 @@
             android:name=".ControlScreen"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity
+           />
+         <activity
             android:name=".About"
             android:label="About GamOsapien"
             android:screenOrientation="portrait" />
